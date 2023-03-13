@@ -26,7 +26,6 @@ const SignUp = () => {
   } = useForm();
 
   const handleAuth = (data, e) => {
-    console.log(data);
     setLoading(true);
     createUser(data.email, data.password)
       .then((result) => {
@@ -34,7 +33,7 @@ const SignUp = () => {
           setCreatedUserEmail(result?.user?.email);
           setError('');
           router.push('/');
-          toast.success('login success');
+          toast.success('Sign Up success');
           setLoading(false);
           e.target.reset();
         }

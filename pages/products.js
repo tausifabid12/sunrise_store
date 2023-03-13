@@ -61,7 +61,6 @@ const Products = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if (data.status) {
           setProductData(data?.data);
         }

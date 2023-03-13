@@ -11,7 +11,6 @@ const UseProductDelete = (id, refetch) => {
     .then((res) => res.json())
     .then((data) => {
       if (data?.status) {
-        console.log(data);
         toast.error('Product Deleted');
         refetch();
       } else {

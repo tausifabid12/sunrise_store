@@ -47,7 +47,6 @@ const ProductUpdateModal = ({
       })
         .then((res) => res.json())
         .then((imgData) => {
-          console.log(imgData);
           const imgUrl = imgData?.data?.url;
           imgUrl ? setImageUrl(imgUrl) : setImageUrl('');
         });

@@ -28,7 +28,6 @@ const AddNewModal = ({
     })
       .then((res) => res.json())
       .then((imgData) => {
-        console.log(imgData);
         const imgUrl = imgData?.data?.url;
         if (imgUrl) {
           const newProduct = { ...data, Image: imgUrl };

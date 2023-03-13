@@ -30,29 +30,28 @@ const MainLayout = ({ title, children }) => {
       id: 3,
       title: 'Catalog',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/catalog',
+      href: '/',
     },
     {
       id: 4,
       title: 'Store',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/store',
+      href: '/',
     },
     {
       id: 5,
       title: 'Outlet',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/outlet',
+      href: '/',
     },
     {
       id: 6,
       title: 'Reports',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/reports',
+      href: '/',
     },
   ];
 
-  console.log(isLinkActive, currentLink);
   return (
     <>
       <Head>

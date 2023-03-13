@@ -11,7 +11,6 @@ const UseToken = (email) => {
           if (data.accessToken) {
             Cookies.set('sunriseToken', data.accessToken);
             setToken(data.accessToken);
-            console.log(data.accessToken);
           }
         });
     }

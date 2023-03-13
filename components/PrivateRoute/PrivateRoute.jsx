@@ -1,6 +1,7 @@
 import { useAuth } from '@/context/AuthProvider/AuthProvider';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import Loading from '../Loading/Loadin';
 
 const PrivateRoute = ({ children }) => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const PrivateRoute = ({ children }) => {
   }, [user, loading, router]);
 
   if (loading) {
-    return <p>loading</p>;
+    return <Loading />;
   }
   if (!user) {
     return null;

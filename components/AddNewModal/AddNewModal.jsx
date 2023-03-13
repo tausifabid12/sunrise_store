@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
@@ -7,13 +7,17 @@ const AddNewModal = ({
   setShowAddProductModal,
   refetch,
 }) => {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
+  //adding
   const handleAddData = (data) => {
+    setLoading(true);
     const image = data.Image[0];
     const formData = new FormData();
     formData.append('image', image);
@@ -38,9 +42,15 @@ const AddNewModal = ({
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
-              toast.success('product Added');
-              refetch();
+              if (data.status) {
+                setLoading(false);
+                setShowAddProductModal(false);
+                toast.success('product Added');
+                refetch();
+              } else {
+                setLoading(false);
+                toast.error('sorry something went wrong');
+              }
             });
         }
       });
@@ -64,7 +74,7 @@ const AddNewModal = ({
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Modal Title</h3>
+                  <h3 className="text-3xl font-semibold">Add new Product</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowAddProductModal(false)}
@@ -158,7 +168,7 @@ const AddNewModal = ({
                       type="submit"
                       //   onClick={() => setshowAddProductModal(false)}
                     >
-                      Update Changes
+                      {loading ? 'Loading...' : 'Add New Product'}
                     </button>
                   </div>
                 </form>

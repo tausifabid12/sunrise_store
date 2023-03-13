@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import PrivateRoute from '@/components/PrivateRoute/PrivateRoute';
 import { useAuth } from '@/context/AuthProvider/AuthProvider';
 import { useQuery } from 'react-query';
+import Loading from '@/components/Loading/Loadin';
 
 const Products = () => {
   const [showModal, setShowModal] = useState(false); // update  modal
@@ -68,7 +69,7 @@ const Products = () => {
   };
 
   if (isLoading) {
-    return <p>Loading ........</p>;
+    return <Loading />;
   }
 
   return (

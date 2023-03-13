@@ -1,12 +1,18 @@
+import Navbar from '@/components/Navbar/Navbar';
+import { useAuth } from '@/context/AuthProvider/AuthProvider';
 import UseActiveLink from '@/hooks/UseActiveLink';
+import Cookies from 'js-cookie';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiFillDingtalkCircle } from 'react-icons/ai';
+import { FiLogOut } from 'react-icons/fi';
 
 const MainLayout = ({ title, children }) => {
   const [currentLink, setCurrentLink] = useState('/');
   const [isLinkActive] = UseActiveLink(currentLink);
+  const { logOut } = useAuth();
   const links = [
     {
       id: 1,
@@ -18,7 +24,7 @@ const MainLayout = ({ title, children }) => {
       id: 2,
       title: 'Products',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/products',
+      href: `/products`,
     },
     {
       id: 3,
@@ -55,32 +61,27 @@ const MainLayout = ({ title, children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="drawer drawer-mobile bg-secondary p-7">
+      <div className="drawer drawer-mobile bg-secondary lg:p-7">
         <input id="sideBar" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ">
           {/* <!-- Page content here --> */}
+          <Navbar />
           {children}
-          <label
-            htmlFor="sideBar"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
         </div>
         <div className="drawer-side">
           <label htmlFor="sideBar" className="drawer-overlay"></label>
-          <div className=" py-4 w-60 bg-white rounded-lg shadow-md text-base-content">
+          <div className=" py-4 w-60 bg-white rounded-lg shadow-md text-base-content relative">
             {/* <!-- Sidebar content here --> */}
             <Link
               href="/"
-              className=" flex items-center justify-center text-primary space-x-2"
+              className=" flex items-center px-4  text-primary space-x-2"
             >
               <span className="">
                 <AiFillDingtalkCircle size={30} />
               </span>
-              <p className="text-lg font-bold">Sunrise Store</p>
+              <p className="text-2xl font-bold">Sunrise Store</p>
             </Link>
-            <div className="mt-14">
+            <div className="mt-10">
               <p className="font-semibold text-xl text-gray-900 pl-3 pb-4">
                 Overview
               </p>
@@ -117,6 +118,17 @@ const MainLayout = ({ title, children }) => {
                   {link?.title}
                 </Link>
               ))}
+            </div>
+            <div className="absolute bottom-3 w-full px-4">
+              <div
+                onClick={logOut}
+                className="flex items-center justify-center mt-16 btn btn-primary text-white w-full space-x-1 px-5"
+              >
+                <span className="bg-transparent w-8 h-8 text-white  rounded-full flex items-center justify-center">
+                  <FiLogOut size={22} />
+                </span>
+                <h4 className="font-bold">LogOut</h4>
+              </div>
             </div>
           </div>
         </div>

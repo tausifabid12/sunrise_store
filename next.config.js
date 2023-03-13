@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'],
   },
+  env: {
+    imageBB_api_key: process.env.IMAGEBB_API_KEY,
+  },
 };
 
 module.exports = nextConfig;

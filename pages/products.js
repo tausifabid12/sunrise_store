@@ -26,7 +26,7 @@ const Products = () => {
   } = useQuery({
     queryKey: ['products'],
     queryFn: () =>
-      fetch(`http://localhost:5000/products`, {
+      fetch(`https://sunrise-store-server.vercel.app/products`, {
         headers: {
           authorization: `bearer ${Cookies.get('sunriseToken')}`,
         },
@@ -45,11 +45,14 @@ const Products = () => {
 
   //searching data
   const handleSearch = async (e) => {
-    fetch(`http://localhost:5000/products?search=${e?.target?.value}`, {
-      headers: {
-        authorization: `bearer ${Cookies.get('sunriseToken')}`,
-      },
-    })
+    fetch(
+      `https://sunrise-store-server.vercel.app/products?search=${e?.target?.value}`,
+      {
+        headers: {
+          authorization: `bearer ${Cookies.get('sunriseToken')}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           logOut();
@@ -140,7 +143,7 @@ const Products = () => {
 // export async function getServerSideProps(context) {
 //   const { token } = context.query;
 
-//   const res = await fetch(`http://localhost:5000/products`, {
+//   const res = await fetch(`https://sunrise-store-server.vercel.app/products`, {
 //     headers: {
 //       authorization: `bearer ${token}`,
 //     },

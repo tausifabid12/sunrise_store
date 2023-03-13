@@ -60,14 +60,17 @@ const ProductUpdateModal = ({
       newData = { price, description, Product_name };
     }
     console.log(newData, updateData?._id);
-    fetch(`http://localhost:5000/products/${updateData?._id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${localStorage.getItem('accessToken')}`,
-      },
-      body: JSON.stringify(newData),
-    })
+    fetch(
+      `https://sunrise-store-server.vercel.app/products/${updateData?._id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `bearer ${localStorage.getItem('accessToken')}`,
+        },
+        body: JSON.stringify(newData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {

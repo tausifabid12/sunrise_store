@@ -28,7 +28,7 @@ const AddNewModal = ({
         const imgUrl = imgData?.data?.url;
         if (imgUrl) {
           const newProduct = { ...data, Image: imgUrl };
-          fetch(`http://localhost:5000/products`, {
+          fetch(`https://sunrise-store-server.vercel.app/products`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

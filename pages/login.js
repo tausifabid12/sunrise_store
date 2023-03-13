@@ -17,7 +17,6 @@ const Login = () => {
   const { login, socialLogin } = useAuth();
   const router = useRouter();
   const [token] = UseToken(createdUserEmail);
-  console.log(token);
 
   const {
     register,

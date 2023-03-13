@@ -1,7 +1,7 @@
 import { toast } from 'react-hot-toast';
 
 const UseProductDelete = (id, refetch) => {
-  fetch(`http://localhost:5000/products/${id}`, {
+  fetch(`https://sunrise-store-server.vercel.app/products/${id}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',

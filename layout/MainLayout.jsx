@@ -1,18 +1,17 @@
 import Navbar from '@/components/Navbar/Navbar';
 import { useAuth } from '@/context/AuthProvider/AuthProvider';
-import UseActiveLink from '@/hooks/UseActiveLink';
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { AiFillDingtalkCircle } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 
 const MainLayout = ({ title, children }) => {
-  const [currentLink, setCurrentLink] = useState('/');
-  const [isLinkActive] = UseActiveLink(currentLink);
   const { logOut } = useAuth();
+  const router = useRouter();
   const links = [
     {
       id: 1,
@@ -30,25 +29,25 @@ const MainLayout = ({ title, children }) => {
       id: 3,
       title: 'Catalog',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/',
+      href: '/s',
     },
     {
       id: 4,
       title: 'Store',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/',
+      href: '/b',
     },
     {
       id: 5,
       title: 'Outlet',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/',
+      href: '/e',
     },
     {
       id: 6,
       title: 'Reports',
       icon: <AiFillDingtalkCircle size={30} />,
-      href: '/',
+      href: '/d',
     },
   ];
 
@@ -87,10 +86,9 @@ const MainLayout = ({ title, children }) => {
               {links.slice(0, 3).map((link) => (
                 <Link
                   href={link.href}
-                  onClick={() => setCurrentLink(link.href)}
                   key={link?.id}
                   className={`w-full px-4 block  font-semibold text-left py-3 transition-all duration-200 ${
-                    isLinkActive && currentLink === link.href
+                    router.asPath === link.href
                       ? 'bg-gradient-to-r from-primary/10 to-primary/5  border-l-4 border-primary text-primary'
                       : 'bg-transparent text-gray-600'
                   }`}
@@ -106,10 +104,9 @@ const MainLayout = ({ title, children }) => {
               {links.slice(3, 6).map((link) => (
                 <Link
                   href={link.href}
-                  onClick={() => setCurrentLink(link.href)}
                   key={link?.id}
                   className={`w-full px-4 block  font-semibold text-left py-3 transition-all duration-200 ${
-                    isLinkActive && currentLink === link.href
+                    router.asPath === link.href
                       ? 'bg-gradient-to-r from-primary/10 to-primary/5  border-l-4 border-primary text-primary'
                       : 'bg-transparent text-gray-600'
                   }`}
